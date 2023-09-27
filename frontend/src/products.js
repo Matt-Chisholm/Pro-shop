@@ -1,9 +1,9 @@
-import airpods from "../public/images/airpods.jpg";
-import alexa from "../public/images/alexa.jpg";
-import camera from "../public/images/camera.jpg";
-import mouse from "../public/images/mouse.jpg";
-import phone from "../public/images/phone.jpg";
-import playstation from "../public/images/playstation.jpg";
+import airpods from "./assets/images/airpods.jpg";
+import alexa from "./assets/images/alexa.jpg";
+import camera from "./assets/images/camera.jpg";
+import mouse from "./assets/images/mouse.jpg";
+import phone from "./assets/images/phone.jpg";
+import playstation from "./assets/images/playstation.jpg";
 
 const products = [
   {
