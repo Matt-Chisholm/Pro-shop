@@ -1,21 +1,21 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { faShoppingCart, faUser } from "react-icons/fa";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
 
 const Header = () => {
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
         <Container>
           <Navbar.Brand href='/'>ProShop</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'></Navbar.Collapse>
-          <Nav className='ml-auto'>
+          <Nav className='ms-auto'>
             <Nav.Link href='/cart'>
-              <faShoppingCart /> Cart
+              <FaShoppingCart /> Cart
             </Nav.Link>
             <Nav.Link href='/login'>
-              <faUser /> Sign In
+              <FaUser /> Sign In
             </Nav.Link>
           </Nav>
         </Container>
