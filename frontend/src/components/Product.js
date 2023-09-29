@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "./Rating";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -18,7 +19,10 @@ const Product = ({ product }) => {
 
         <Card.Text as='div'>
           <div className='my-3'>
-            {product.rating} from {product.numReviews} reviews
+            <Rating
+              value={product.rating}
+              text={`${product.numReviews} reviews`}
+            />
           </div>
         </Card.Text>
 
