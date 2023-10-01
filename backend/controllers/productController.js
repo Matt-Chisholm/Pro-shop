@@ -3,8 +3,8 @@
 // in backend/controllers/productController.js. The controller is responsible for handling the request and sending the response.
 // The controller uses the product model to access the database and return the data.
 
-import asyncHandler from "../middleware/asyncHandler";
-import Product from "../models/productmodel";
+import asyncHandler from "../middleware/asyncHandler.js";
+import Product from "../models/productmodel.js";
 
 // @desc    Fetch all products
 // @route   GET /api/products
