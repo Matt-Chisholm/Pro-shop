@@ -26,15 +26,24 @@ const cartSlice = createSlice({
       }
 
       // Calculate item's price
-      state.itemsPrice = state.cartItems.reduce(
-        (acc, item) => acc + item.price * item.qty,
-        0
+      state.itemsPrice = addDemicals(
+        state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
       );
+
       //Calculate shipping price
+      state.shippingPrice = addDemicals(state.itemsPrice > 100 ? 0 : 100);
 
       // Calculate tax price
+      state.taxPrice = addDemicals(
+        Number((0.15 * state.itemsPrice).toFixed(2))
+      );
 
       // Calculate total price
+      state.totalPrice = addDemicals(
+        Number(state.itemsPrice) +
+          Number(state.shippingPrice) +
+          Number(state.taxPrice)
+      );
     },
   },
 });
