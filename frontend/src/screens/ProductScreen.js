@@ -1,16 +1,24 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { addToCart } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductScreen = () => {
   const { id: productID } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [qty, setQty] = React.useState(1);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ productID, qty }));
+    navigate("/cart");
+  };
 
   const {
     data: product,
