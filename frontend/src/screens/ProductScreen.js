@@ -73,6 +73,29 @@ const ProductScreen = () => {
                     </Row>
                   </ListGroup.Item>
 
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Quantity</Col>
+                        <Col xs='auto' className='my-1'>
+                          <select
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
+                            className='form-select'
+                            id='qty'>
+                            {[...Array(product.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </select>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+
                   <ListGroup.Item>
                     <Button
                       className='btn-block'
