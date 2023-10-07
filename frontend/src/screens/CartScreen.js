@@ -30,7 +30,7 @@ function CartScreen() {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    "TODO: checkoutHandler";
   };
 
   return (
@@ -71,7 +71,7 @@ function CartScreen() {
                     <Button
                       type='button'
                       variant='light'
-                      onClick={() => removeFromCartHandler(item.product)}>
+                      onClick={() => removeFromCartHandler(item._id)}>
                       <FaTrash />
                     </Button>
                   </Col>
