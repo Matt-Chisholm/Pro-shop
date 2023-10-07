@@ -8,8 +8,6 @@ const addDemicals = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
 
-console.log('hi');
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
