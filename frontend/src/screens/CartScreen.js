@@ -30,7 +30,7 @@ function CartScreen() {
   };
 
   const checkoutHandler = () => {
-    "TODO: checkoutHandler";
+    navigate("/login?redirect=/shipping");
   };
 
   return (
