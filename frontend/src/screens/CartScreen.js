@@ -29,8 +29,6 @@ function CartScreen() {
     dispatch(removeFromCart(id));
   };
 
-  console.log('test');
-
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping");
   };
