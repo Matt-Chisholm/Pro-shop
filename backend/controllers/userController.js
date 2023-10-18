@@ -31,3 +31,10 @@ const logoutUser = asyncHandler(async (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   res.send("get user profile");
 });
+
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  res.send("update user profile");
+});
