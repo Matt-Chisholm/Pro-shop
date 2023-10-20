@@ -11,6 +11,9 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
+// Body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
