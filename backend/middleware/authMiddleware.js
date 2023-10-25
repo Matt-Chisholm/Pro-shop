@@ -5,21 +5,15 @@ import User from "../models/userModel.js";
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
-  // Check if authorization header exists and starts with "Bearer"
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
+  // Read the JWT from the cookie
+  token = req.cookies.jwt;
+
+  if (token) {
     try {
-      // Get token from authorization header
-      token = req.headers.authorization.split(" ")[1];
-
-      // Verify token
+      // Verify the token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      // Find user by id from decoded token
+      // Find the user by id
       req.user = await User.findById(decoded.userId).select("-password");
-
       next();
     } catch (error) {
       console.error(error);
@@ -27,7 +21,6 @@ const protect = asyncHandler(async (req, res, next) => {
       throw new Error("Not authorized, token failed");
     }
   } else {
-    // No authorization header
     res.status(401);
     throw new Error("Not authorized, no token");
   }
