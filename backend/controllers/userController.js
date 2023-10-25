@@ -53,7 +53,8 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access  Public
 
 const logoutUser = asyncHandler(async (req, res) => {
-  res.send("logout user");
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.json({ message: "Logged out" });
 });
 
 // @desc    Get user profile
