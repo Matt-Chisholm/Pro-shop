@@ -45,7 +45,35 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 
 const registerUser = asyncHandler(async (req, res) => {
-  res.send("register user");
+  const { name, email, password } = req.body;
+
+  // Check if user already exists
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+
+  // Create new user
+  const user = await User.create({
+    name,
+    email,
+    password,
+  });
+
+  // If user is created successfully
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
 });
 
 // @desc    Log out user and clear cookie
@@ -53,8 +81,8 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access  Public
 
 const logoutUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", { maxAge: 1 });
-  res.json({ message: "Logged out" });
+  res.cookie("jwt", "", { httpOnly: true, expiresIn: new Date(0) });
+  res.json({ message: "Logged out successfully" });
 });
 
 // @desc    Get user profile
