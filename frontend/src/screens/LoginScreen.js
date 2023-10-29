@@ -38,6 +38,7 @@ function LoginScreen() {
       // This is the new login mutation that we created in frontend/src/slices/usersApiSlice.js.
       const result = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...result }));
+      console.log("result", result);
       navigate(redirect);
     } catch (error) {
       console.log(error);
