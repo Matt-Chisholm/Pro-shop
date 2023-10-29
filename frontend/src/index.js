@@ -9,6 +9,7 @@ import {
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import LoginScreen from "./screens/LoginScreen";
 import "./assets/styles/bootstrap.custom.css"; // Importing Bootstrap CSS file
 import "./assets/styles/index.css"; // Importing CSS file
 import App from "./App";
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index={true} path='/' element={<HomeScreen />} />
       <Route path='/product/:id' element={<ProductScreen />} />
       <Route path='/cart' element={<CartScreen />} />
+      <Route path='/login' element={<LoginScreen />} />
     </Route>
   )
 );
