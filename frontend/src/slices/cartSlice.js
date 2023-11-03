@@ -36,6 +36,11 @@ const cartSlice = createSlice({
 
       return updateCart(state);
     },
+    savePaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
+
+      return updateCart(state);
+    },
   },
 });
 
