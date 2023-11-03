@@ -6,16 +6,16 @@
  */
 :root,
 [data-bs-theme='light'] {
-  --bs-blue: #3c4c5d;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: #e74c3c;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #f39c12;
-  --bs-green: #18bc9c;
-  --bs-teal: #20c997;
-  --bs-cyan: #3498db;
+  --bs-blue: #0071a1;    /* New blue color */
+  --bs-indigo: #5a50e4;  /* New indigo color */
+  --bs-purple: #9055a2;  /* New purple color */
+  --bs-pink: #d93c7d;    /* New pink color */
+  --bs-red: #e1534d;     /* New red color */
+  --bs-orange: #ff8c42;  /* New orange color */
+  --bs-yellow: #ffc100;  /* New yellow color */
+  --bs-green: #30a69a;   /* New green color */
+  --bs-teal: #38c6ac;    /* New teal color */
+  --bs-cyan: #54a5db;    /* New cyan color */
   --bs-black: #000;
   --bs-white: #fff;
   --bs-gray: #7b8a8b;
@@ -29,14 +29,14 @@
   --bs-gray-700: #7b8a8b;
   --bs-gray-800: #7b8a8b;
   --bs-gray-900: #7b8a8b;
-  --bs-primary: #3c4c5d;
-  --bs-secondary: #7b8a8b;
-  --bs-success: #18bc9c;
-  --bs-info: #3498db;
-  --bs-warning: #f39c12;
-  --bs-danger: #e74c3c;
-  --bs-light: #f4f4f4;
-  --bs-dark: #7b8a8b;
+  --bs-primary: #0071a1; /* New primary color */
+  --bs-secondary: #7b8a8b; /* Grey secondary color */
+  --bs-success: #30a69a;  /* New success color */
+  --bs-info: #54a5db;     /* New info color */
+  --bs-warning: #ffc100;  /* New warning color */
+  --bs-danger: #e1534d;   /* New danger color */
+  --bs-light: #f4f4f4;    /* Light grey */
+  --bs-dark: #1f2e35;     /* Dark background */
   --bs-primary-rgb: 60, 76, 93;
   --bs-secondary-rgb: 123, 138, 139;
   --bs-success-rgb: 24, 188, 156;
@@ -134,9 +134,9 @@
 }
 
 [data-bs-theme='dark'] {
-  --bs-body-color: #7b8a8b;
+  --bs-body-color: #5c9569;
   --bs-body-color-rgb: 123, 138, 139;
-  --bs-body-bg: #7b8a8b;
+  --bs-body-bg: #7b838b;
   --bs-body-bg-rgb: 123, 138, 139;
   --bs-emphasis-color: #f4f4f4;
   --bs-emphasis-color-rgb: 244, 244, 244;
@@ -164,7 +164,7 @@
   --bs-warning-bg-subtle: #311f04;
   --bs-danger-bg-subtle: #2e0f0c;
   --bs-light-bg-subtle: #7b8a8b;
-  --bs-dark-bg-subtle: #3e4546;
+  --bs-dark-bg-subtle: #568e5b;
   --bs-primary-border-subtle: #242e38;
   --bs-secondary-border-subtle: #7b8a8b;
   --bs-success-border-subtle: #0e715e;
@@ -172,7 +172,7 @@
   --bs-warning-border-subtle: #613e07;
   --bs-danger-border-subtle: #8b2e24;
   --bs-light-border-subtle: #7b8a8b;
-  --bs-dark-border-subtle: #7b8a8b;
+  --bs-dark-border-subtle: #4f8b7b;
   --bs-heading-color: #fff;
   --bs-link-color: #8a949e;
   --bs-link-hover-color: #b1b7be;

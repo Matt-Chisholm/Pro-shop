@@ -1,8 +1,6 @@
 import { USERS_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
-console.log('hi')
-
 // This is a new slice that will be used to make API calls to the users endpoint.
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

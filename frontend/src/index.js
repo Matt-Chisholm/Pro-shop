@@ -11,7 +11,7 @@ import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-import "./assets/styles/bootstrap.custom.css"; // Importing Bootstrap CSS file
+import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css"; // Importing CSS file
 import App from "./App";
 import { Provider } from "react-redux";
