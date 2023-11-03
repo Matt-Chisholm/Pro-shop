@@ -11,6 +11,7 @@ import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import ShippingScreen from "./screens/ShippingScreen";
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css"; // Importing CSS file
 import App from "./App";
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path='/cart' element={<CartScreen />} />
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
+      <Route path='/shipping' element={<ShippingScreen />} />
     </Route>
   )
 );

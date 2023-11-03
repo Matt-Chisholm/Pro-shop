@@ -9,6 +9,11 @@ function ShippingScreen() {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
 
+  function submitHandler(e) {
+    e.preventDefault();
+    console.log("submit");
+  }
+
   return (
     <FormContainer>
       <Form onSubmit={submitHandler}>
