@@ -30,8 +30,6 @@ const PlaceOrderScreen = () => {
         totalPrice: cart.totalPrice,
       }).unwrap();
 
-      console.log("RES:", res);
-
       dispatch(clearCartItems());
       toast.success(`Order ${res.id} placed successfully.`);
       navigate(`/orders/${res._id}`);
