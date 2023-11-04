@@ -23,7 +23,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   } else {
     // Create new order
     const order = new Order({
-      orderItem: orderItems.map((item) => ({
+      orderItems: orderItems.map((item) => ({
         ...item,
         product: item._id,
         _id: undefined,
@@ -61,6 +61,8 @@ const getOrderById = asyncHandler(async (req, res) => {
     "user",
     "name email"
   );
+
+  console.log(order);
 
   if (order) {
     res.status(200).json(order);

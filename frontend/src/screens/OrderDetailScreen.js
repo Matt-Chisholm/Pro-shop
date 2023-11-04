@@ -78,6 +78,78 @@ const OrderDetailScreen = () => {
           </Card>
         </Col>
       </Row>
+
+      <Row className='mt-3'>
+        <Col md={8}>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>Order Items</h2>
+              {order.orderItems.length === 0 ? (
+                <Message>Order is empty</Message>
+              ) : (
+                <ListGroup variant='flush'>
+                  {order.orderItems.map((item, index) => (
+                    <ListGroup.Item key={index}>
+                      <Row>
+                        <Col md={1}>
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fluid
+                            rounded
+                          />
+                        </Col>
+                        <Col>
+                          <Link to={`/product/${item.product}`}>
+                            {item.name}
+                          </Link>
+                        </Col>
+                        <Col md={4}>
+                          {item.qty} x ${item.price} = $
+                          {(item.qty * item.price).toFixed(2)}
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              )}
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <h2>Order Summary</h2>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Items</Col>
+                  <Col>${order.itemsPrice.toFixed(2)}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Shipping</Col>
+                  <Col>${order.shippingPrice.toFixed(2)}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Tax</Col>
+                  <Col>${order.taxPrice.toFixed(2)}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Total</Col>
+                  <Col>${order.totalPrice.toFixed(2)}</Col>
+                </Row>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 };

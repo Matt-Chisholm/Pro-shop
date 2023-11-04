@@ -31,7 +31,7 @@ const PlaceOrderScreen = () => {
       }).unwrap();
 
       dispatch(clearCartItems());
-      toast.success(`Order ${res.id} placed successfully.`);
+      toast.success(`Order placed successfully.`);
       navigate(`/orders/${res._id}`);
     } catch (error) {
       console.error("Network or other error:", error);
@@ -75,8 +75,8 @@ const PlaceOrderScreen = () => {
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant='flush'>
-                  {cart.cartItems.map((item) => (
-                    <ListGroup.Item key={item.id}>
+                  {cart.cartItems.map((item, index) => (
+                    <ListGroup.Item key={index}>
                       <Row>
                         <Col md={2}>
                           <Image
