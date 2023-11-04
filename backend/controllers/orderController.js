@@ -20,29 +20,29 @@ const addOrderItems = asyncHandler(async (req, res) => {
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
+  } else {
+    // Create new order
+    const order = new Order({
+      orderItem: orderItems.map((item) => ({
+        ...item,
+        product: item._id,
+        _id: undefined,
+      })),
+      user: req.user._id,
+      shippingAddress,
+      paymentMethod,
+      itemsPrice,
+      taxPrice,
+      shippingPrice,
+      totalPrice,
+    });
+
+    // Save order to database
+    const createdOrder = await order.save();
+
+    // Send response
+    res.status(201).json(createdOrder);
   }
-
-  // Create new order
-  const order = new Order({
-    orderItem: orderItems.map((item) => ({
-      ...item,
-      product: item.product._id,
-      _id: undefined,
-    })),
-    user: req.user._id,
-    shippingAddress,
-    paymentMethod,
-    itemsPrice,
-    taxPrice,
-    shippingPrice,
-    totalPrice,
-  });
-
-  // Save order to database
-  const createdOrder = await order.save();
-
-  // Send response
-  res.status(201).json(createdOrder);
 });
 
 // @desc    Get logged in user orders
