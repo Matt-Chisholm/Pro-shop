@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import {
-  useCreateOrderMutation,
   useGetOrderDetailsQuery,
   useGetPayPalClientIdQuery,
   usePayOrderMutation,
@@ -68,14 +67,6 @@ const OrderScreen = () => {
         toast.error(err?.data?.message || err.error);
       }
     });
-  }
-
-  // TESTING ONLY! REMOVE BEFORE PRODUCTION
-  async function onApproveTest() {
-    await payOrder({ orderId, details: { payer: {} } });
-    refetch();
-
-    toast.success("Order is paid");
   }
 
   function onError(err) {
@@ -219,13 +210,6 @@ const OrderScreen = () => {
                     <Loader />
                   ) : (
                     <div>
-                      {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
-                      <Button
-                        style={{ marginBottom: "10px" }}
-                        onClick={onApproveTest}>
-                        Test Pay Order
-                      </Button>
-
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
