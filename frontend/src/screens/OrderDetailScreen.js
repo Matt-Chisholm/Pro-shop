@@ -1,105 +1,105 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from "react-bootstrap";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { toast } from "react-toastify";
-import { useGetOrderDetailsQuery } from "../slices/ordersApiSlice";
+import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 import {
-  usePayOrderMutation,
+  useCreateOrderMutation,
+  useGetOrderDetailsQuery,
   useGetPayPalClientIdQuery,
+  usePayOrderMutation,
 } from "../slices/ordersApiSlice";
 
-const OrderDetailScreen = () => {
+const OrderScreen = () => {
   const { id: orderId } = useParams();
 
   const {
     data: order,
-    isLoading,
     refetch,
+    isLoading,
     error,
   } = useGetOrderDetailsQuery(orderId);
 
-  const {
-    data: paypal,
-    isLoading: loadingPaypal,
-    error: errorPaypal,
-  } = useGetPayPalClientIdQuery();
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
-  const [payOrder, { isLoading: isPaying }] = usePayOrderMutation();
-
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  // const [deliverOrder, { isLoading: loadingDeliver }] =
+  //   useDeliverOrderMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
+  const {
+    data: paypal,
+    isLoading: loadingPayPal,
+    error: errorPayPal,
+  } = useGetPayPalClientIdQuery();
+
   useEffect(() => {
-    if (!errorPaypal && !loadingPaypal && paypal.clientId) {
-      const loadPayPalScript = async () => {
+    if (!errorPayPal && !loadingPayPal && paypal.clientId) {
+      const loadPaypalScript = async () => {
         paypalDispatch({
           type: "resetOptions",
           value: {
-            clientId: paypal.clientId,
+            "client-id": paypal.clientId,
             currency: "USD",
           },
         });
         paypalDispatch({ type: "setLoadingStatus", value: "pending" });
       };
-
       if (order && !order.isPaid) {
         if (!window.paypal) {
-          loadPayPalScript();
+          loadPaypalScript();
         }
       }
     }
-  }, [paypal, order, errorPaypal, loadingPaypal, paypalDispatch]);
+  }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
 
-  const onApprove = async (data, actions) => {
+  function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
         await payOrder({ orderId, details });
         refetch();
-        toast.success("Payment Successful.");
+        toast.success("Order is paid");
       } catch (err) {
-        toast.error(err?.data?.message || "Payment failed.");
+        toast.error(err?.data?.message || err.error);
       }
     });
-  };
+  }
 
-  const onApproveTest = async () => {
+  // TESTING ONLY! REMOVE BEFORE PRODUCTION
+  async function onApproveTest() {
     await payOrder({ orderId, details: { payer: {} } });
     refetch();
-    toast.success("Payment Successful.");
-  };
 
-  const onError = (err) => {
-    toast.error(err.message || "Payment failed.");
-  };
+    toast.success("Order is paid");
+  }
 
-  const createOrder = (data, actions) => {
+  function onError(err) {
+    toast.error(err.message);
+  }
+
+  function createOrder(data, actions) {
     return actions.order
       .create({
         purchase_units: [
           {
-            amount: {
-              value: order.totalPrice,
-            },
+            amount: { value: order.totalPrice },
           },
         ],
       })
       .then((orderID) => {
         return orderID;
       });
-  };
+  }
+
+  // const deliverHandler = async () => {
+  //   await deliverOrder(orderId);
+  //   refetch();
+  // };
 
   return isLoading ? (
     <Loader />
@@ -213,19 +213,18 @@ const OrderDetailScreen = () => {
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
-                  {isPaying && <Loader />}
+                  {loadingPay && <Loader />}
 
                   {isPending ? (
                     <Loader />
                   ) : (
                     <div>
                       {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
-                      {/* <Button
-                        style={{ marginBottom: '10px' }}
-                        onClick={onApproveTest}
-                      >
+                      <Button
+                        style={{ marginBottom: "10px" }}
+                        onClick={onApproveTest}>
                         Test Pay Order
-                      </Button> */}
+                      </Button>
 
                       <div>
                         <PayPalButtons
@@ -237,6 +236,22 @@ const OrderDetailScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
+
+              {/* {loadingDeliver && <Loader />} */}
+
+              {/* {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={deliverHandler}>
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )} */}
             </ListGroup>
           </Card>
         </Col>
@@ -245,4 +260,4 @@ const OrderDetailScreen = () => {
   );
 };
 
-export default OrderDetailScreen;
+export default OrderScreen;

@@ -78,9 +78,10 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
   // Check if order exists
   if (order) {
+    console.log("HERE!");
     // Update order
     order.isPaid = true;
-    order.paidAt = Date.now();
+    order.paidAt = new Date();
     order.paymentResult = {
       // Data from PayPal
       id: req.body.id,
@@ -93,7 +94,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     const updatedOrder = await order.save();
 
     // Send response
-    res.status(200).json(updatedOrder);
+    res.status(200);
+    res.json(updatedOrder);
   } else {
     res.status(404);
     throw new Error("Order not found");
