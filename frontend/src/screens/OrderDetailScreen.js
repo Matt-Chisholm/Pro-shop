@@ -146,6 +146,7 @@ const OrderDetailScreen = () => {
                   <Col>${order.totalPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
+              {/* BUTTON TO BE MADE FOR ADMIN  */}
             </ListGroup>
           </Card>
         </Col>
