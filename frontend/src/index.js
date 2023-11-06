@@ -14,9 +14,11 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderListScreen from "./screens/OrderListScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PrivateRoute from "./components/PrivateRoute";
 import OrderDetailScreen from "./screens/OrderDetailScreen";
+import AdminRoute from "./components/AdminRoute";
 import ProfileScreen from "./screens/ProfileScreen";
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css"; // Importing CSS file
@@ -38,6 +40,9 @@ const router = createBrowserRouter(
         <Route path='/placeorder' element={<PlaceOrderScreen />} />
         <Route path='/orders/:id' element={<OrderDetailScreen />} />
         <Route path='/profile' element={<ProfileScreen />} />
+      </Route>
+      <Route path='' element={<AdminRoute />}>
+        <Route path='/admin/orderlist' element={<OrderListScreen />} />
       </Route>
     </Route>
   )
