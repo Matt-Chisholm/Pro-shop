@@ -57,4 +57,5 @@ export const {
   usePayOrderMutation,
   useGetMyOrdersQuery,
   useGetAllOrdersQuery,
+  useDeliverOrderMutation,
 } = ordersApiSlice;
