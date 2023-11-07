@@ -17,7 +17,7 @@ const OrderListScreen = () => {
     <Table striped bordered hover responsive className='table-sm'>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Order ID</th>
           <th>User</th>
           <th>Date</th>
           <th>Total Price</th>
@@ -48,7 +48,7 @@ const OrderListScreen = () => {
               )}
             </td>
             <td>
-              <LinkContainer to={`/order/${order._id}`}>
+              <LinkContainer to={`/orders/${order._id}`}>
                 <Button variant='light' className='btn-sm'>
                   Details
                 </Button>
