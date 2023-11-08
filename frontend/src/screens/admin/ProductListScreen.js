@@ -13,7 +13,7 @@ import {
 const ProductListScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
 
-  const [createProduct, { isLoading: isLoadingCreate, error: errorCreate }] =
+  const [createProduct, { isLoading: isLoadingCreate }] =
     useCreateProductMutation();
 
   const createProductHandler = async () => {
