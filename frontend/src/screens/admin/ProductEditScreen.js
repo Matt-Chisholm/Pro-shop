@@ -46,7 +46,25 @@ const ProductEditScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submit");
+    const updatedProduct = {
+      _id: productId,
+      name,
+      price,
+      image,
+      brand,
+      category,
+      countInStock,
+      description,
+    };
+    try {
+      await updateProduct(updatedProduct);
+      refetch();
+      toast.success("Product updated successfully");
+      navigate("/admin/productlist");
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+      console.log("Update product error:", error);
+    }
   };
 
   const navigate = useNavigate();
