@@ -47,7 +47,7 @@ const ProductEditScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const updatedProduct = {
-      _id: productId,
+      productId,
       name,
       price,
       image,
@@ -56,14 +56,14 @@ const ProductEditScreen = () => {
       countInStock,
       description,
     };
-    try {
-      await updateProduct(updatedProduct);
-      refetch();
+
+    const result = await updateProduct(updatedProduct);
+
+    if (result.error) {
+      toast.error(result.error);
+    } else {
       toast.success("Product updated successfully");
       navigate("/admin/productlist");
-    } catch (error) {
-      toast.error(error?.data?.message || error.error);
-      console.log("Update product error:", error);
     }
   };
 
