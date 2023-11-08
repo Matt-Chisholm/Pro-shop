@@ -11,6 +11,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: (id) => ({ url: `${PRODUCTS_URL}/${id}` }),
       keepUnusedDataFor: 5,
     }),
+    createProduct: builder.mutation({
+      query: () => ({
+        url: PRODUCTS_URL,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
