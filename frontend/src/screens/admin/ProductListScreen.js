@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useUpdateProductMutation,
 } from "../../slices/productsApiSlice";
 
 const ProductListScreen = () => {
