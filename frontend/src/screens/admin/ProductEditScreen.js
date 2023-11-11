@@ -56,6 +56,7 @@ const ProductEditScreen = () => {
     try {
       const result = await uploadProductImage(formData).unwrap();
       setImage(result.image);
+      toast.success("Image uploaded successfully");
     } catch (error) {
       toast.error(error?.data?.message || error.error);
       console.log("Upload image error:", error);
