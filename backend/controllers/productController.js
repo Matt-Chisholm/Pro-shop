@@ -32,19 +32,28 @@ const getProductById = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
-  const product = new Product({
-    name: "Sample name",
-    price: 0,
-    image: "/images/sample.jpg",
-    brand: "Sample brand",
-    category: "Sample category",
-    countInStock: 0,
-    numReviews: 0,
-    description: "Sample description",
-  });
+  try {
+    const product = new Product({
+      name: "Sample name",
+      user: req.user._id,
+      price: 0,
+      image: "/images/sample.jpg",
+      brand: "Sample brand",
+      category: "Sample category",
+      countInStock: 0,
+      numReviews: 0,
+      description: "Sample description",
+    });
 
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
+    const createdProduct = await product.save();
+    res.status(201).json(createdProduct);
+  } catch (error) {
+    // Log the error to the console
+    console.error("Error creating product:", error);
+
+    // Send an appropriate error response
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 // @desc    Update a product

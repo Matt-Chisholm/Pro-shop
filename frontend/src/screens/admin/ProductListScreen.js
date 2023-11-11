@@ -25,6 +25,7 @@ const ProductListScreen = () => {
       try {
         await createProduct();
         refetch();
+        toast.success("Product created successfully");
       } catch (error) {
         toast.error(error?.data?.message || error.error);
         console.log("Create product error:", error);
@@ -37,6 +38,7 @@ const ProductListScreen = () => {
       try {
         await deleteProduct(id);
         refetch();
+        toast.success("Product deleted successfully");
       } catch (error) {
         toast.error(error?.data?.message || error.error);
         console.log("Delete product error:", error);
