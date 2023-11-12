@@ -151,7 +151,20 @@ const getUsers = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 
 const deleteUser = asyncHandler(async (req, res) => {
-  res.send("delete user");
+  const user = await User.findById(req.params.id);
+
+  // If user is found
+  if (user) {
+    if (user.isAdmin) {
+      res.status(400);
+      throw new Error("Cannot delete admin user");
+    }
+    await User.deleteOne({ _id: user._id });
+    res.status(201).json({ message: "User deleted successfully" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 // @desc    Get user by ID
@@ -177,7 +190,30 @@ const getUserById = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 
 const updateUser = asyncHandler(async (req, res) => {
-  res.send("update user");
+  const user = await User.findById(req.params.id);
+
+  // If user is found
+  if (user) {
+    // Update user
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = Boolean(req.body.isAdmin);
+
+    // Save user
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+
+    // If user is not found
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 export {
