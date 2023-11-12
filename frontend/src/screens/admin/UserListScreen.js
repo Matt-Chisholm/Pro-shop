@@ -4,10 +4,13 @@ import { Table, Button } from "react-bootstrap";
 import { FaTrash, FaPenSquare } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
-import { useGetProductsQuery } from "../../slices/productsApiSlice";
+import {
+  useGetUsersQuery,
+  useDeleteUserMutation,
+} from "../../slices/usersApiSlice";
 
 const UserListScreen = () => {
-  const { data: users, isLoading, error } = useGetProductsQuery();
+  const { data: users, isLoading, error } = useGetUsersQuery();
 
   return isLoading ? (
     <Loader />
@@ -24,8 +27,9 @@ const UserListScreen = () => {
           <th></th>
         </tr>
       </thead>
+
       <tbody>
-        {users.map((user) => (
+        {users?.map((user) => (
           <tr key={user._id}>
             <td>{user._id}</td>
             <td>{user.name}</td>
@@ -45,9 +49,6 @@ const UserListScreen = () => {
                   <FaPenSquare />
                 </Button>
               </LinkContainer>
-              <Button variant='danger' className='btn-sm'>
-                <FaTrash />
-              </Button>
             </td>
           </tr>
         ))}
