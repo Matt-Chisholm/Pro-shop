@@ -159,7 +159,17 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 
 const getUserById = asyncHandler(async (req, res) => {
-  res.send("get user by id");
+  const user = await User.findById(req.params.id).select("-password");
+
+  // If user is found
+  if (user) {
+    res.status(200).json(user);
+
+    // If user is not found
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 // @desc    Update user
