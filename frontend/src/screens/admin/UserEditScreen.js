@@ -18,9 +18,16 @@ const UserEditScreen = () => {
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const { data: user, isLoading, error } = useGetUserDetailsQuery(userId);
+  const {
+    data: user,
+    isLoading,
+    error,
+    refetch,
+  } = useGetUserDetailsQuery(userId);
 
   const [updateUser, { isLoading: isLoadingUpdate }] = useUpdateUserMutation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -33,8 +40,10 @@ const UserEditScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await updateUser({ id: userId, name, email, isAdmin });
+      await updateUser({ userId, name, email, isAdmin });
       toast.success("User updated successfully");
+      refetch();
+      navigate("/admin/userlist");
     } catch (error) {
       toast.error(error?.data?.message || error.error);
       console.log("Update user error:", error);
