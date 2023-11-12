@@ -1,5 +1,6 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import { toast } from "react-toastify";
 import { Table, Button } from "react-bootstrap";
 import { FaTrash, FaPenSquare, FaCheck, FaTimes } from "react-icons/fa";
 import Loader from "../../components/Loader";
@@ -18,9 +19,11 @@ const UserListScreen = () => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await deleteUser(id);
+        toast.success("User deleted successfully");
         refetch();
       } catch (error) {
         console.log("Delete user error:", error);
+        toast.error(error?.data?.message || error.error);
       }
     }
   };
