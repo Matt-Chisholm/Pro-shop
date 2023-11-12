@@ -1,7 +1,7 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
-import { FaTrash, FaPenSquare } from "react-icons/fa";
+import { FaTrash, FaPenSquare, FaCheck, FaTimes } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import {
@@ -10,7 +10,20 @@ import {
 } from "../../slices/usersApiSlice";
 
 const UserListScreen = () => {
-  const { data: users, isLoading, error } = useGetUsersQuery();
+  const { data: users, isLoading, error, refetch } = useGetUsersQuery();
+
+  const [deleteUser, { isLoading: isLoadingDelete }] = useDeleteUserMutation();
+
+  const deleteHandler = async (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await deleteUser(id);
+        refetch();
+      } catch (error) {
+        console.log("Delete user error:", error);
+      }
+    }
+  };
 
   return isLoading ? (
     <Loader />
@@ -27,7 +40,7 @@ const UserListScreen = () => {
           <th></th>
         </tr>
       </thead>
-
+      {isLoadingDelete && <Loader />}
       <tbody>
         {users?.map((user) => (
           <tr key={user._id}>
@@ -38,17 +51,24 @@ const UserListScreen = () => {
             </td>
             <td>
               {user.isAdmin ? (
-                <FaPenSquare style={{ color: "green" }} />
+                <FaCheck style={{ color: "green" }} />
               ) : (
-                <FaTrash style={{ color: "red" }} />
+                <FaTimes style={{ color: "red" }} />
               )}
             </td>
             <td>
               <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                <Button variant='light' className='btn-sm'>
+                <Button variant='info' className='btn-sm my-2'>
                   <FaPenSquare />
                 </Button>
               </LinkContainer>
+              <Button
+                variant='danger'
+                className='btn-sm'
+                style={{ marginLeft: "0.5rem" }}
+                onClick={() => deleteHandler(user._id)}>
+                <FaTrash />
+              </Button>
             </td>
           </tr>
         ))}
