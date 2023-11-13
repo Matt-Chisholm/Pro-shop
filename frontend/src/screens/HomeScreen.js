@@ -8,9 +8,12 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const HomeScreen = () => {
-  const { pageNumber } = useParams();
+  const { pageNumber, keyword } = useParams();
 
-  const { data, isLoading, error } = useGetProductsQuery({ pageNumber });
+  const { data, isLoading, error } = useGetProductsQuery({
+    pageNumber,
+    keyword,
+  });
 
   return (
     <>
