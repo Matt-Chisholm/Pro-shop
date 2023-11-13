@@ -22,10 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.send("Server is ready");
-});
-
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
@@ -37,6 +33,20 @@ app.get("/api/config/paypal", (req, res) => {
 
 const __dirname = path.resolve(); // Set __dirname to the current directory name
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+if (process.env.NODE_ENV === "production") {
+  // Set frontend/build as the static folder
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+
+  // Serve index.html file if any other route is hit
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("Server is ready");
+  });
+}
 
 app.use(notFound);
 app.use(errorHandler);
