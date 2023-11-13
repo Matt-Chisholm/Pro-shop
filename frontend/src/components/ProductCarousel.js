@@ -40,7 +40,9 @@ const ProductCarousel = () => {
                 style={{ objectFit: "cover", height: "100%" }}
               />
             </div>
-            <h3 className='text-center' style={{ opacity: "0" }}>
+            <h3
+              className='text-center'
+              style={{ opacity: "0", height: "30px" }}>
               {product.description}
             </h3>
             <div className='caption-container'>
