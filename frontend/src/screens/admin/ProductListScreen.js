@@ -14,7 +14,7 @@ import {
 } from "../../slices/productsApiSlice";
 
 const ProductListScreen = () => {
-  const { pageNumber } = useParams();
+  const { pageNumber, keyword } = useParams();
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
   });
@@ -107,7 +107,12 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={data.pages} currentPage={data.page} isAdmin={true} />
+          <Paginate
+            pages={data.pages}
+            currentPage={data.page}
+            isAdmin={true}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>

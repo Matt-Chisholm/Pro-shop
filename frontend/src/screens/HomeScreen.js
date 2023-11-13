@@ -37,6 +37,7 @@ const HomeScreen = () => {
             pages={data.pages}
             currentPage={data.page}
             isAdmin={false}
+            keyword={keyword ? keyword : ""}
           />
         </>
       )}
