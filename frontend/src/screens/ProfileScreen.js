@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 import { useProfileMutation } from "../slices/usersApiSlice";
 import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
 import { setCredentials } from "../slices/authSlice";
@@ -57,6 +58,7 @@ const ProfileScreen = () => {
 
   return (
     <Row>
+      <Meta title='Tech Trove | Profile' />
       <Col md={3}>
         <h2>User Profile</h2>
         {error && <Message variant='danger'>{error}</Message>}

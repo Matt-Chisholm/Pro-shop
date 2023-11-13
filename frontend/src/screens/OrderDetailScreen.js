@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 import {
   useGetOrderDetailsQuery,
   useGetPayPalClientIdQuery,
@@ -104,6 +105,7 @@ const OrderScreen = () => {
     <Message variant='danger'>{error.data.message}</Message>
   ) : (
     <>
+      <Meta title={`Tech Trove | Order`} />
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>

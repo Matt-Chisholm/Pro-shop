@@ -9,6 +9,7 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
+import Meta from "../components/Meta";
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -35,6 +36,7 @@ function CartScreen() {
 
   return (
     <Row>
+      <Meta title='Tech Trove | Cart' />
       <Col md={8}>
         <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
         {cartItems.length === 0 ? (

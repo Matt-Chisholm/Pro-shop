@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Product from "../components/Product";
+import Meta from "../components/Meta";
 import ProductCarousel from "../components/ProductCarousel";
 import Paginate from "../components/Paginate";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
@@ -32,6 +33,7 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <>
+          <Meta title={"Tech Trove | Home"} />
           {!keyword && <ProductCarousel />}
           <h1>Latest Products</h1>
           <Row>

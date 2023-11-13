@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
@@ -63,7 +64,7 @@ function RegisterScreen() {
             value={name}
             onChange={(e) => setName(e.target.value)}></Form.Control>
         </Form.Group>
-
+        <Meta title='Tech Trove | Register' />
         <Form.Group controlId='email' className='my-3'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control

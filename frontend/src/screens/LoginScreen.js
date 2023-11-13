@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
@@ -57,7 +58,7 @@ function LoginScreen() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}></Form.Control>
         </Form.Group>
-
+        <Meta title='Tech Trove | Login' />
         <Form.Group controlId='password' className='my-3'>
           <Form.Label>Password</Form.Label>
           <Form.Control

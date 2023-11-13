@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Meta from "../components/Meta";
 import { saveShippingAddress } from "../slices/cartSlice";
 import FormContainer from "../components/FormContainer";
 import CheckoutSteps from "../components/CheckoutSteps";
@@ -41,7 +42,7 @@ function ShippingScreen() {
             required
             onChange={(e) => setAddress(e.target.value)}></Form.Control>
         </Form.Group>
-
+        <Meta title='Tech Trove | Shipping' />
         <Form.Group controlId='city'>
           <Form.Label>City</Form.Label>
           <Form.Control

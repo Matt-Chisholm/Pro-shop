@@ -3,6 +3,7 @@ import { Form, Button, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Meta from "../components/Meta";
 import { savePaymentMethod } from "../slices/cartSlice";
 import CheckoutSteps from "../components/CheckoutSteps";
 
@@ -30,6 +31,7 @@ const PaymentScreen = () => {
 
   return (
     <FormContainer>
+      <Meta title='Tech Trove | Payment Method' />
       <CheckoutSteps step1 step2 step3 />
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>
