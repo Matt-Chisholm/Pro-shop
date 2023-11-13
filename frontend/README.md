@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# Tech Trove
+
+Welcome to Tech Trove, an electronics e-commerce site developed for learning purposes. This MERN stack application is fully functional, featuring a MongoDB database and seamless PayPal integration. It was built using create-react-app for a streamlined development process.
+
+Features: 
+
+Full E-Commerce Functionality: Tech Trove includes a complete set of e-commerce features, allowing users to browse electronic products, add items to their cart, and complete secure transactions using PayPal.
+
+MongoDB Integration: The app is backed by a MongoDB database, providing a robust and scalable solution for storing product information, user data, and order details.
+
+PayPal Integration: Enjoy a hassle-free shopping experience with seamless PayPal integration for secure and convenient transactions.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

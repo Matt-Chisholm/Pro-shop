@@ -36,17 +36,17 @@ const ProductCarousel = () => {
                 src={product.image}
                 alt={product.name}
                 fluid
-                className='w-200 d-block w-80'
+                className='w-200 d-block mx-auto'
                 style={{ objectFit: "cover", height: "100%" }}
               />
             </div>
-            <h3
-              className='text-center'
-              style={{ opacity: "0", height: "30px" }}>
+            <h3 className='text-center' style={{ opacity: "0", height: "0px" }}>
               {product.description}
             </h3>
             <div className='caption-container'>
-              <Carousel.Caption className='carousel-caption'>
+              <Carousel.Caption
+                className='carousel-caption'
+                style={{ backgroundColor: "#4990a3" }}>
                 <h2>
                   {trimProductName(product.name)} (${product.price})
                 </h2>
