@@ -128,8 +128,6 @@ const PlaceOrderScreen = () => {
                   <Col>Total :</Col>
                   <Col>${cart.totalPrice}</Col>
                 </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
                 {isLoading && <Loader />}
                 {error && (
                   <Message variant='danger'>{error.data.message}</Message>
@@ -144,6 +142,10 @@ const PlaceOrderScreen = () => {
                   Place Order
                 </Button>
               </ListGroup.Item>
+              <p className='text-center'>
+                DISCLAIMER: This is a fake website and only functions for
+                learning and development purposes.
+              </p>
             </ListGroup>
           </Card>
         </Col>

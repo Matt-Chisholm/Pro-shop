@@ -7,6 +7,13 @@ import { useGetTopProductsQuery } from "../slices/productsApiSlice";
 const ProductCarousel = () => {
   const { data: products, isLoading, error } = useGetTopProductsQuery();
 
+  const trimProductName = (name) => {
+    if (name.length > 30) {
+      return name.slice(0, 20) + "...";
+    }
+    return name;
+  };
+
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -19,7 +26,6 @@ const ProductCarousel = () => {
             <div
               style={{
                 height: "300px",
-                width: "100%",
                 overflow: "hidden",
                 display: "flex",
                 justifyContent: "center", // Center horizontally
@@ -30,18 +36,20 @@ const ProductCarousel = () => {
                 src={product.image}
                 alt={product.name}
                 fluid
-                className='w-200'
+                className='w-200 d-block w-80'
                 style={{ objectFit: "cover", height: "100%" }}
               />
             </div>
             <h3 className='text-center' style={{ opacity: "0" }}>
               {product.description}
             </h3>
-            <Carousel.Caption className='carousel-caption'>
-              <h2>
-                {product.name} (${product.price})
-              </h2>
-            </Carousel.Caption>
+            <div className='caption-container'>
+              <Carousel.Caption className='carousel-caption'>
+                <h2>
+                  {trimProductName(product.name)} (${product.price})
+                </h2>
+              </Carousel.Caption>
+            </div>
           </Link>
         </Carousel.Item>
       ))}
