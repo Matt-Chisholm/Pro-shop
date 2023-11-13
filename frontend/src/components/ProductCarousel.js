@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Carousel, Image } from "react-bootstrap";
 import Loader from "./Loader";
 import Message from "./Message";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import { useGetTopProductsQuery } from "../slices/productsApiSlice";
 
 const ProductCarousel = () => {
@@ -20,6 +19,7 @@ const ProductCarousel = () => {
             <div
               style={{
                 height: "300px",
+                width: "100%",
                 overflow: "hidden",
                 display: "flex",
                 justifyContent: "center", // Center horizontally
