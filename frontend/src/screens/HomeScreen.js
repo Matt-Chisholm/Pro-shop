@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Product from "../components/Product";
+import ProductCarousel from "../components/ProductCarousel";
 import Paginate from "../components/Paginate";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
@@ -31,6 +32,7 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <>
+          {!keyword && <ProductCarousel />}
           <h1>Latest Products</h1>
           <Row>
             {data.products.map((product) => (
